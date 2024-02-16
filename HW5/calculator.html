@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator App</title>
+    <style>
+        .errorMsg, .error {
+            color: red;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator App</h1>
+    <p>Choose an operation and enter values for X and Y to calculate Z.</p>
+    <p>
+        <b>X</b>: <input type="text" id="operand1" name="x">
+    </p>
+    <p>
+        <b>Operator</b>: 
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+    </p>
+    <p>
+        <b>Y</b>: <input type="text" id="operand2" name="y">
+    </p>
+    <p>
+        <b>Z</b>: <span id="result"></span>
+    </p>
+    <p class="errorMsg">
+        <b>Error</b>: <span id="errorMessage"></span>
+    </p>
+    <p>
+        <input type="button" value="Calculate" onclick="calculateSum()" />
+    </p>
+    <script>
+        function calculateSum() {
+            document.getElementById('errorMessage').innerText = '';
+            var operand1 = parseFloat(document.getElementById('operand1').value);
+            var operand2 = parseFloat(document.getElementById('operand2').value);
+            var operator = document.getElementById('operator').value;
+            var result;
+
+            if (isNaN(operand1) || isNaN(operand2)) {
+                document.getElementById('errorMessage').innerText = 
+                'Oh no, please enter valid numbers for X and Y.';
+                return;
+            }
+
+            switch(operator) {
+                case '+':
+                    result = operand1 + operand2;
+                    break;
+                case '-':
+                    result = operand1 - operand2;
+                    break;
+                case '*':
+                    result = operand1 * operand2;
+                    break;
+                case '/':
+                    if (operand2 === 0) {
+                        document.getElementById('errorMessage').innerText = 
+                        'Oops, cannot divide by zero.';
+                        return;
+                    }
+                    result = operand1 / operand2;
+                    break;
+                case '%':
+                    result = operand1 % operand2;
+                    break;
+                default:
+                    document.getElementById('errorMessage').innerText = 
+                    'Invalid operation.';
+                    return;
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
