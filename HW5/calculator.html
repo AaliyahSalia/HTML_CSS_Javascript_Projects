@@ -12,7 +12,8 @@
 </head>
 <body>
     <h1>Calculator App</h1>
-    <p>Choose an operation and enter values for X and Y to calculate Z.</p>
+    <p>Choose an operation and enter values for X and Y to 
+        calculate Z.</p>
     <p>
         <b>X</b>: <input type="text" id="operand1" name="x">
     </p>
@@ -24,6 +25,7 @@
             <option value="*">*</option>
             <option value="/">/</option>
             <option value="%">%</option>
+            <option value="**">^</option>
         </select>
     </p>
     <p>
@@ -36,7 +38,8 @@
         <b>Error</b>: <span id="errorMessage"></span>
     </p>
     <p>
-        <input type="button" value="Calculate" onclick="calculateSum()" />
+        <input type="button" value="Calculate" onclick=
+        "calculateSum()" />
     </p>
     <script>
         function calculateSum() {
@@ -72,6 +75,9 @@
                     break;
                 case '%':
                     result = operand1 % operand2;
+                    break;
+                case '**':
+                    result = Math.pow(operand1, operand2);
                     break;
                 default:
                     document.getElementById('errorMessage').innerText = 
